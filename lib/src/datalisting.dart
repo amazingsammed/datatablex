@@ -1,6 +1,6 @@
 
-import 'package:datatablex/src/tablehead.dart';
-import 'package:datatablex/src/tableoptions.dart';
+import 'package:datatablex/src/model/tablehead.dart';
+import 'package:datatablex/src/model/tableoptions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,9 +8,11 @@ import 'form/itembody.dart';
 import 'form/itemheader.dart';
 import 'model/datatablethemex.dart';
 
-
+///  [DataTableX] is the main entry to the usage of this plugin, it takes in [title],[heads] and [items] as a defaults startup
 class DataTableX extends StatefulWidget {
+  /// [title] is a String that serve as the identifier for the Datatable
   final String title;
+  /// [ontap] it is used when someone taps on a row in the datatable
   final Function(Map)? ontap;
   final Function(List<Map>)? selecteditems;
   final List<TableHead> heads;
@@ -66,7 +68,7 @@ class _DataTableXState extends State<DataTableX> {
           actions: [widget.titleWidget ?? Container()],
         ),
         body: Container(
-          //  padding: const EdgeInsets.symmetric(horizontal: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
             children: [
               SizedBox(
@@ -168,7 +170,7 @@ class _DataTableXState extends State<DataTableX> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  height: 40,
+                  height: 45,
                   child: Row(
                     children: [
                       Expanded(
@@ -183,7 +185,7 @@ class _DataTableXState extends State<DataTableX> {
                   ),
                 ),
                 Container(
-                  height: 70,
+                  height: 40,
                   child: Row(
                     children: [
                       Expanded(

@@ -18,15 +18,24 @@ class MyApp extends StatelessWidget {
         ),
         body: DataTableX(
           title: 'Student Management',
+          maxRows: 100,
           heads: [
             TableHead(title: 'Name', id: 'name'),
             TableHead(title: 'Gender', id: 'gender'),
             TableHead(title: 'Dob', id: 'dob'),
             TableHead(title: 'Guardian', id: 'gr'),
             TableHead(title: 'Contact', id: 'grc'),
-            TableHead(title: 'Action', id: 'button'),
+            TableHead(title: 'Action', id: 'button',isbutton: true,button: (item){
+              return Icon(Icons.more_vert);
+            }),
           ],
-          items: List.generate(100, (generator){
+          titleWidget: Row(
+            children: [
+              BasicButton(title: "Add")
+            ],
+          ),
+          selecteditems: (a){},
+          items: List.generate(600, (generator){
             return  {
               'name': "Sammed",
               'gender': "Male",

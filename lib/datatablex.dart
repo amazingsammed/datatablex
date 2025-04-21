@@ -1,6 +1,8 @@
+//flutter pub publish
 
 export 'src/datalisting.dart';
-export 'src/tablehead.dart';
-export 'src/tableoptions.dart';
-export 'src/extension.dart';
+export 'src/model/tablehead.dart';
+export 'src/model/tableoptions.dart';
+export 'src/shared/extension.dart';
 export 'src/model/datatablethemex.dart';
+export 'src/shared/primary_button.dart';
