@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../datatablex.dart';
-import '../model/datatablethemex.dart';
 
 class ItemListBody extends StatefulWidget {
   final List<TableHead> head;
@@ -15,15 +13,14 @@ class ItemListBody extends StatefulWidget {
   final int maxRows;
 
   const ItemListBody(
-      {Key? key,
+      {super.key,
       required this.head,
       required this.items,
       this.ontap,
       this.selecteditem,
       required this.selectedItems,
       this.dataTableTheme,
-      required this.maxRows})
-      : super(key: key);
+      required this.maxRows});
 
   @override
   State<ItemListBody> createState() => _ItemListBodyState();
@@ -97,7 +94,9 @@ class _ItemListBodyState extends State<ItemListBody> {
                                                       .contains(item),
                                                   onChanged: (e) {
                                                     if (widget.selecteditem ==
-                                                        null) return;
+                                                        null) {
+                                                      return;
+                                                    }
                                                     setState(() {
                                                       if (widget.selectedItems
                                                           .contains(item)) {
@@ -162,35 +161,33 @@ class _ItemListBodyState extends State<ItemListBody> {
                   ),
                   Row(
                     children: [
-                      Container(
-                        child: Row(
-                            children: List.generate(
-                                (widget.items.length / widget.maxRows).ceil(),
-                                (index) => InkWell(
-                                    onTap: () {
-                                      setState(() {
-                                        _currentPage = index;
-                                        pageController.animateToPage(index,
-                                            duration:
-                                                Duration(microseconds: 200),
-                                            curve: Curves.ease);
-                                      });
-                                    },
-                                    child: Container(
-                                        padding: EdgeInsets.all(8),
-                                        decoration: BoxDecoration(
+                      Row(
+                          children: List.generate(
+                              (widget.items.length / widget.maxRows).ceil(),
+                              (index) => InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      _currentPage = index;
+                                      pageController.animateToPage(index,
+                                          duration:
+                                              Duration(microseconds: 200),
+                                          curve: Curves.ease);
+                                    });
+                                  },
+                                  child: Container(
+                                      padding: EdgeInsets.all(8),
+                                      decoration: BoxDecoration(
+                                          color: _currentPage == index
+                                              ? Colors.blue
+                                              : null),
+                                      child: Text(
+                                        "${index + 1}",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
                                             color: _currentPage == index
-                                                ? Colors.blue
+                                                ? Colors.white
                                                 : null),
-                                        child: Text(
-                                          "${index + 1}",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: _currentPage == index
-                                                  ? Colors.white
-                                                  : null),
-                                        ))))),
-                      ),
+                                      ))))),
                       Spacer(),
                       Text(
                         "${widget.selectedItems.length} of ${widget.items.length} Row(s) Selected",

@@ -1,6 +1,4 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 
 class DataTableThemeX {
   TextStyle headerTextStyle;
@@ -27,7 +25,7 @@ const TextStyle BodyTextStyle =
 const Decoration HeaderDecoration = BoxDecoration(
     color: Colors.black54,
     // border: Border.all(color: Colors.black12),
-    borderRadius: const BorderRadius.only(
+    borderRadius: BorderRadius.only(
         topRight: Radius.circular(6), topLeft: Radius.circular(6)));
 const EdgeInsets HeaderPadding =
     EdgeInsets.symmetric(horizontal: 20, vertical: 10);

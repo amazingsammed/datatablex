@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BasicButton extends StatelessWidget {
@@ -12,7 +11,7 @@ class BasicButton extends StatelessWidget {
   final FocusNode? focusNode;
 
   const BasicButton(
-      {Key? key,
+      {super.key,
       this.onTap,
       this.title,
       this.icon,
@@ -20,21 +19,22 @@ class BasicButton extends StatelessWidget {
       this.width,
       this.hasIcon = true,
       this.color,
-      this.focusNode})
-      : super(key: key);
+      this.focusNode});
 
   @override
   Widget build(BuildContext context) {
     var x = MediaQuery.of(context).size.width;
     if (MediaQuery.of(context).size.width < 600 ||
-        MediaQuery.of(context).size.height < 300) return IconButton(onPressed: onTap, icon: Icon(icon??Icons.add),tooltip: title,);
+        MediaQuery.of(context).size.height < 300) {
+      return IconButton(onPressed: onTap, icon: Icon(icon??Icons.add),tooltip: title,);
+    }
     return ElevatedButton(
       focusNode: focusNode,
       style: ButtonStyle(
-        elevation: MaterialStateProperty.all(0),
+        elevation: WidgetStateProperty.all(0),
         backgroundColor:
-            MaterialStateProperty.all<Color>(color ?? Colors.black38),
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            WidgetStateProperty.all<Color>(color ?? Colors.black38),
+        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(6),
           ),

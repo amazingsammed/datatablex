@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../datatablex.dart';
-import '../model/datatablethemex.dart';
 
 class ItemListHeader extends StatelessWidget {
   final List<TableHead> elements;
@@ -13,15 +11,13 @@ class ItemListHeader extends StatelessWidget {
 
 
   const ItemListHeader(
-      {Key? key,
+      {super.key,
         required this.elements,
         required this.selectedItems,
-        required this.onAccept,  this.selecteditem,  this.dataTableTheme})
-      : super(key: key);
+        required this.onAccept,  this.selecteditem,  this.dataTableTheme});
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController number = TextEditingController();
     return Container(
       padding: dataTableTheme?.headerPadding?? HeaderPadding,
       decoration: dataTableTheme?.headerDecoration??HeaderDecoration,

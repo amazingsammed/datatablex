@@ -1,7 +1,6 @@
 
 import 'package:datatablex/src/model/tablehead.dart';
 import 'package:datatablex/src/model/tableoptions.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'form/itembody.dart';
@@ -24,15 +23,14 @@ class DataTableX extends StatefulWidget {
   final int maxRows;
 
   const DataTableX(
-      {Key? key,
+      {super.key,
         this.ontap,
         required this.title,
         required this.heads,
         required this.items,
         this.titleWidget,
         this.selecteditems,
-        this.tableOptions, this.refreshButton, this.dataTableTheme, this.maxRows = 50})
-      : super(key: key);
+        this.tableOptions, this.refreshButton, this.dataTableTheme, this.maxRows = 50});
 
   @override
   State<DataTableX> createState() => _DataTableXState();
@@ -64,7 +62,7 @@ class _DataTableXState extends State<DataTableX> {
       return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: Text(widget.title + " (${widget.items.length.toString()})"),
+          title: Text("${widget.title} (${widget.items.length.toString()})"),
           actions: [widget.titleWidget ?? Container()],
         ),
         body: Container(
@@ -143,7 +141,7 @@ class _DataTableXState extends State<DataTableX> {
                             return SizedBox();
                           }
                           return ListTile(
-                            title: Text(item[element.id] ?? ""),
+                            title: Text(item[element.id].toString() ?? ""),
                             subtitle: Text(element.title),
                           );
                         }).toList(),
@@ -169,7 +167,7 @@ class _DataTableXState extends State<DataTableX> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
+                SizedBox(
                   height: 45,
                   child: Row(
                     children: [
@@ -184,7 +182,7 @@ class _DataTableXState extends State<DataTableX> {
                     ],
                   ),
                 ),
-                Container(
+                SizedBox(
                   height: 40,
                   child: Row(
                     children: [
