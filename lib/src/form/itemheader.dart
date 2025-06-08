@@ -61,9 +61,11 @@ class ItemListHeader extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    item.title,overflow: TextOverflow.ellipsis,
-                    style: dataTableTheme?.headerTextStyle??HeaderTextStyle,
+                  Expanded(
+                    child: Text(
+                      item.title,overflow: TextOverflow.ellipsis,
+                      style: dataTableTheme?.headerTextStyle??HeaderTextStyle,
+                    ),
                   ),
                 ],
               ),
