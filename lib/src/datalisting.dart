@@ -144,7 +144,7 @@ backgroundColor: widget.dataTableTheme?.headerDecoration?.color,
                               return SizedBox();
                             }
                             return ListTile(
-                              title: Text(item[element.id].toString() ?? ""),
+                              title: Text(item[element.id].toString() ),
                               subtitle: Text(element.title),
                             );
                           }).toList(),

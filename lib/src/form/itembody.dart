@@ -74,7 +74,7 @@ class _ItemListBodyState extends State<ItemListBody> {
                                 },
                                 child: Container(
                                   padding: widget.dataTableTheme?.bodyPadding ??
-                                      BodyPadding,
+                                      bodyPadding,
                                   decoration: BoxDecoration(
                                     color: widget.selectedItems.contains(item)
                                         ? Colors.blue[100]
@@ -121,7 +121,7 @@ class _ItemListBodyState extends State<ItemListBody> {
                                         var results = item[element.id];
                                         String data = "";
                                         if (element.type ==
-                                            TableHeadType.String) {
+                                            TableHeadType.string) {
                                           data = results ?? "";
                                         } else if (element.type ==
                                             TableHeadType.int) {

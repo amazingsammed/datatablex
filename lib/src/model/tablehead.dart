@@ -20,9 +20,9 @@ class TableHead {
     this.isbutton = false,
     this.isTitle = false,
     this.isSubtitle = false,
-    this.type = TableHeadType.String,
+    this.type = TableHeadType.string,
     this.button,
   });
 }
 
-enum TableHeadType { String, int, double, bool, currency }
+enum TableHeadType { string, int, double, bool, currency }

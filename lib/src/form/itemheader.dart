@@ -19,8 +19,8 @@ class ItemListHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: dataTableTheme?.headerPadding?? HeaderPadding,
-      decoration: dataTableTheme?.headerDecoration??HeaderDecoration,
+      padding: dataTableTheme?.headerPadding?? headerPadding,
+      decoration: dataTableTheme?.headerDecoration??headerDecoration,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -52,7 +52,7 @@ class ItemListHeader extends StatelessWidget {
                 },
                 icon: Icon(Icons.menu_open),
               )),
-          SizedBox(width: 40,child: Text('No',style: dataTableTheme?.headerTextStyle??HeaderTextStyle,),),SizedBox(),
+          SizedBox(width: 40,child: Text('No',style: dataTableTheme?.headerTextStyle??headerTextStyle,),),SizedBox(),
           ...elements.map((item) {
             return Expanded(
               flex: item.size * item.width.toInt(),
@@ -64,7 +64,7 @@ class ItemListHeader extends StatelessWidget {
                   Expanded(
                     child: Text(
                       item.title,overflow: TextOverflow.ellipsis,
-                      style: dataTableTheme?.headerTextStyle??HeaderTextStyle,
+                      style: dataTableTheme?.headerTextStyle??headerTextStyle,
                     ),
                   ),
                 ],

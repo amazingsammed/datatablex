@@ -1,9 +1,8 @@
 
 import 'package:datatablex/src/shared/responsivex.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-enum Variant { Solid, Outline }
+enum Variant { solid, outline }
 class TableButton extends StatelessWidget {
   final IconData icon;
   final Color bgColor;
@@ -19,7 +18,7 @@ class TableButton extends StatelessWidget {
         this.ontap,
         this.onLongPress,
         this.onDoubleTap,
-        this.variant = Variant.Solid});
+        this.variant = Variant.solid});
 
   @override
   Widget build(BuildContext context) {
@@ -45,14 +44,14 @@ class TableButton extends StatelessWidget {
 
           padding: EdgeInsets.all(10),
           decoration: BoxDecoration(
-              color: variant==Variant.Solid?bgColor:Colors.transparent,
+              color: variant==Variant.solid?bgColor:Colors.transparent,
               borderRadius: BorderRadius.circular(6),
-              border: variant==Variant.Outline?Border.all(color:
+              border: variant==Variant.outline?Border.all(color:
               bgColor):null
           ),
           child: Icon(
             icon,
-            color:variant==Variant.Outline?bgColor: Colors.white60,
+            color:variant==Variant.outline?bgColor: Colors.white60,
 
             size: 20,
           ),

@@ -9,28 +9,32 @@ class DataTableThemeX {
   EdgeInsetsGeometry bodyPadding;
 
   DataTableThemeX({
-    this.headerTextStyle = HeaderTextStyle,
-    this.bodyTextStyle = BodyTextStyle,
-    this.headerDecoration = HeaderDecoration,
-    this.bodyDecoration = BodyDecoration,
-    this.headerPadding = HeaderPadding,
-    this.bodyPadding = BodyPadding,
+    this.headerTextStyle =  const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+    this.bodyTextStyle = const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+    this.headerDecoration =  const BoxDecoration(
+        color: Colors.black54,
+        // border: Border.all(color: Colors.black12),
+        borderRadius: BorderRadius.only(
+            topRight: Radius.circular(6), topLeft: Radius.circular(6))),
+    this.bodyDecoration = const  BoxDecoration(),
+    this.headerPadding =  const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+    this.bodyPadding = const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
   });
 }
 
-const TextStyle HeaderTextStyle =
+  final headerTextStyle =
     TextStyle(color: Colors.white, fontWeight: FontWeight.bold);
-const TextStyle BodyTextStyle =
+const TextStyle bodyTextStyle =
     TextStyle(color: Colors.white, fontWeight: FontWeight.bold);
-const BoxDecoration HeaderDecoration = BoxDecoration(
+const BoxDecoration headerDecoration = BoxDecoration(
     color: Colors.black54,
     // border: Border.all(color: Colors.black12),
     borderRadius: BorderRadius.only(
         topRight: Radius.circular(6), topLeft: Radius.circular(6)));
-const EdgeInsets HeaderPadding =
+const EdgeInsets headerPadding =
     EdgeInsets.symmetric(horizontal: 20, vertical: 20);
 
-const Decoration BodyDecoration = BoxDecoration();
+const Decoration bodyDecoration = BoxDecoration();
 
-const EdgeInsets BodyPadding =
+const EdgeInsets bodyPadding =
     EdgeInsets.symmetric(horizontal: 20, vertical: 10);
