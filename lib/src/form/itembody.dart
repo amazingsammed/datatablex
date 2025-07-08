@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../datatablex.dart';
 
@@ -37,7 +38,7 @@ class _ItemListBodyState extends State<ItemListBody> {
         child: widget.items.isEmpty
             ? const Center(
                 child: Text(
-                'No Data Available to present',
+                'No Data Available',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ))
             : Column(
@@ -189,10 +190,24 @@ class _ItemListBodyState extends State<ItemListBody> {
                                                 : null),
                                       ))))),
                       Spacer(),
-                      Text(
+                     if(widget.selectedItems.isNotEmpty) Text(
                         "${widget.selectedItems.length} of ${widget.items.length} Row(s) Selected",
                         style: TextStyle(fontWeight: FontWeight.bold),
-                      )
+                      ),
+                      TextButton(onPressed: (){
+                        String data = "";
+                        for (var elementx in widget.head) {
+                          data += "${elementx.title}\t";
+                        }
+                        data+="\n";
+                        for (var element in widget.items) {
+                          for (var elementx in widget.head) {
+                            data += "${element[elementx.id]}\t";
+                          }
+                          data+="\n";                        }
+Clipboard.setData(ClipboardData(text: data));
+
+                      }, child: Text("Copy to Excel"))
                     ],
                   ),
                 ],

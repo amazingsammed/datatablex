@@ -1,4 +1,5 @@
 
+import 'package:datatablex/datatablex.dart';
 import 'package:datatablex/src/model/tablehead.dart';
 import 'package:datatablex/src/model/tableoptions.dart';
 import 'package:datatablex/src/shared/responsivex.dart';
@@ -63,7 +64,7 @@ class _DataTableXState extends State<DataTableX> {
         appBar: AppBar(
 backgroundColor: widget.dataTableTheme?.headerDecoration?.color,
           automaticallyImplyLeading: false,
-          leading: widget.refreshButton??Container(),
+          leading: widget.refreshButton??null,
           title: Text(widget.title),
           actions: [widget.titleWidget ?? Container()],
         ),
@@ -254,11 +255,13 @@ backgroundColor: widget.dataTableTheme?.headerDecoration?.color,
                       ],
                     ),
                   ),
+
                 ],
               ),
             ),
           ),
         ),
+
       ),);
 
   }

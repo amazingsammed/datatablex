@@ -55,3 +55,8 @@ class MyApp extends StatelessWidget {
 
 ```
 
+# other helpful widget included
+
+- PrimaryButton
+- TableButton
+

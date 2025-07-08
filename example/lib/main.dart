@@ -34,38 +34,15 @@ class MyApp extends StatelessWidget {
               BasicButton(title: "Add")
             ],
           ),
-          // selecteditems: (a){},
-          items: [
-            {
+           //selecteditems: (a){},
+          items: List.generate(20, (i){return {
             'name': "Sammed",
             'gender': "Male",
             'dob': "2013",
             'gr': "Mr.James",
             'grc': "+233 34567890",
 
-          },   {
-            'name': "Farouk",
-            'gender': "Male",
-            'dob': "2014",
-            'gr': "Mr.Samuel",
-            'grc': "+233 34567890",
-
-          },   {
-            'name': "Basit",
-            'gender': "Male",
-            'dob': "2015",
-            'gr': "Mr.Micheal",
-            'grc': "+233 34567890",
-
-          },   {
-            'name': "Mariam",
-            'gender': "Female",
-            'dob': "2016",
-            'gr': "Mr.Cujoe",
-            'grc': "+233 34567890",
-
-          },
-          ],
+          };}),
         ),
       ),
     );

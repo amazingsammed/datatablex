@@ -20,7 +20,7 @@ class ResponsiveLayout extends StatelessWidget {
 
   Widget getResponsiveWidget(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
-    var screenHeight = MediaQuery.of(context).size.width;
+    var screenHeight = MediaQuery.of(context).size.height;
 
     if (screenWidth >= 600 || screenHeight<=300) {
       return desktopWidget;
