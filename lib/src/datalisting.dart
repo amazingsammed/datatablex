@@ -1,4 +1,6 @@
 
+// ignore_for_file: deprecated_member_use_from_same_package
+
 import 'package:datatablex/datatablex.dart';
 
 import 'package:datatablex/src/shared/responsivex.dart';
@@ -16,6 +18,7 @@ class DataTableX extends StatefulWidget {
   final Function(List<Map>)? selecteditems;
   final List<TableHead> heads;
   final List items;
+  final Map<String,dynamic>? lastRow;
   final Widget? titleWidget;
   final Widget? refreshButton;
   final TableOptions? tableOptions;
@@ -30,7 +33,7 @@ class DataTableX extends StatefulWidget {
         required this.items,
         this.titleWidget,
         this.selecteditems,
-        this.tableOptions, this.refreshButton, this.dataTableTheme, this.maxRows = 50});
+        this.tableOptions, this.refreshButton, this.dataTableTheme, this.maxRows = 50,  this.lastRow});
 
   @override
   State<DataTableX> createState() => _DataTableXState();
@@ -241,6 +244,7 @@ backgroundColor: widget.dataTableTheme?.headerDecoration?.color,
                                 }, dataTableTheme: widget.dataTableTheme,
                               ),
                               ItemListBody(
+                                lastRow: widget.lastRow,
                                 maxRows: widget.maxRows,
                                 dataTableTheme: widget.dataTableTheme,
                                 selecteditem: widget.selecteditems,

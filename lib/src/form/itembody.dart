@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use_from_same_package
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -12,6 +14,7 @@ class ItemListBody extends StatefulWidget {
 
   final List items;
   final int maxRows;
+  final Map<String, dynamic>? lastRow;
 
   const ItemListBody(
       {super.key,
@@ -21,7 +24,7 @@ class ItemListBody extends StatefulWidget {
       this.selecteditem,
       required this.selectedItems,
       this.dataTableTheme,
-      required this.maxRows});
+      required this.maxRows, this.lastRow, });
 
   @override
   State<ItemListBody> createState() => _ItemListBodyState();
@@ -148,6 +151,18 @@ class _ItemListBodyState extends State<ItemListBody> {
                                             ),
                                           );
                                         }
+                                        if (element.widget!=null) {
+                                          return Expanded(
+                                            flex: element.size *
+                                                element.width.toInt(),
+                                            child: Row(
+                                              children: [
+                                                element.widget!(item) ??
+                                                    Container()
+                                              ],
+                                            ),
+                                          );
+                                        }
                                         return Expanded(
                                           flex: element.size *
                                               element.width.toInt(),
@@ -161,6 +176,56 @@ class _ItemListBodyState extends State<ItemListBody> {
                             },
                           );
                         }),
+                  ),
+                  if(widget.lastRow!=null)Container(
+                    padding: widget.dataTableTheme?.bodyPadding ??
+                        bodyPadding,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black12),
+                    ),
+                    child: Row(
+                      mainAxisAlignment:
+                      MainAxisAlignment.spaceBetween,
+                      children: [
+
+                        widget.selecteditem != null
+                            ? SizedBox(
+                          width: 40,
+                          child: Checkbox(
+                              value: false, onChanged: (bool? value) {  },
+                              ),
+                        )
+                            : SizedBox(),
+                        SizedBox(
+                          width: 40,
+                          child: Text(
+                            '',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        ...widget.head.map((element) {
+                          var results = widget.lastRow![element.id];
+                          String data = "";
+                          if (element.type ==
+                              TableHeadType.string) {
+                            data = results ?? "";
+                          } else if (element.type ==
+                              TableHeadType.int) {
+                            data = "$results";
+                          } else if (element.type ==
+                              TableHeadType.double) {
+                            data = "$results";
+                          }
+
+                          return Expanded(
+                            flex: element.size *
+                                element.width.toInt(),
+                            child: Text(data,style: TextStyle(fontWeight: FontWeight.bold),),
+                          );
+                        })
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: 5,
