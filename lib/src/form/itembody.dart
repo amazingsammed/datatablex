@@ -79,7 +79,9 @@ class _ItemListBodyState extends State<ItemListBody> {
                                   decoration: BoxDecoration(
                                     color: widget.selectedItems.contains(item)
                                         ? Colors.blue[100]
-                                        : index%2!=0?Colors.grey.shade100:null,
+                                        : index % 2 != 0
+                                            ? Colors.grey.shade100
+                                            : null,
                                     // color: controller.hoverColor.value,
                                     border: Border.all(color: Colors.black12),
                                   ),
@@ -116,7 +118,10 @@ class _ItemListBodyState extends State<ItemListBody> {
                                       SizedBox(
                                         width: 40,
                                         child: Text(
-                                            '${index + 1 + (_currentPage * widget.maxRows)}',style: TextStyle(fontWeight: FontWeight.bold),),
+                                          '${index + 1 + (_currentPage * widget.maxRows)}',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
                                       ),
                                       ...widget.head.map((element) {
                                         var results = item[element.id];
@@ -170,8 +175,7 @@ class _ItemListBodyState extends State<ItemListBody> {
                                     setState(() {
                                       _currentPage = index;
                                       pageController.animateToPage(index,
-                                          duration:
-                                              Duration(microseconds: 200),
+                                          duration: Duration(microseconds: 200),
                                           curve: Curves.ease);
                                     });
                                   },
@@ -190,24 +194,27 @@ class _ItemListBodyState extends State<ItemListBody> {
                                                 : null),
                                       ))))),
                       Spacer(),
-                     if(widget.selectedItems.isNotEmpty) Text(
-                        "${widget.selectedItems.length} of ${widget.items.length} Row(s) Selected",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      TextButton(onPressed: (){
-                        String data = "";
-                        for (var elementx in widget.head) {
-                          data += "${elementx.title}\t";
-                        }
-                        data+="\n";
-                        for (var element in widget.items) {
-                          for (var elementx in widget.head) {
-                            data += "${element[elementx.id]}\t";
-                          }
-                          data+="\n";                        }
-Clipboard.setData(ClipboardData(text: data));
-
-                      }, child: Text("Copy to Excel"))
+                      if (widget.selectedItems.isNotEmpty)
+                        Text(
+                          "${widget.selectedItems.length} of ${widget.items.length} Row(s) Selected",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      TextButton(
+                          onPressed: () {
+                            String data = "";
+                            for (var elementx in widget.head) {
+                              data += "${elementx.title}\t";
+                            }
+                            data += "\n";
+                            for (var element in widget.items) {
+                              for (var elementx in widget.head) {
+                                data += "${element[elementx.id]}\t";
+                              }
+                              data += "\n";
+                            }
+                            Clipboard.setData(ClipboardData(text: data));
+                          },
+                          child: Text("Copy to Excel"))
                     ],
                   ),
                 ],

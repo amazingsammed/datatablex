@@ -1,13 +1,11 @@
 
 import 'package:datatablex/datatablex.dart';
-import 'package:datatablex/src/model/tablehead.dart';
-import 'package:datatablex/src/model/tableoptions.dart';
+
 import 'package:datatablex/src/shared/responsivex.dart';
 import 'package:flutter/material.dart';
 
 import 'form/itembody.dart';
 import 'form/itemheader.dart';
-import 'model/datatablethemex.dart';
 
 ///  [DataTableX] is the main entry to the usage of this plugin, it takes in [title],[heads] and [items] as a defaults startup
 class DataTableX extends StatefulWidget {
@@ -64,98 +62,102 @@ class _DataTableXState extends State<DataTableX> {
         appBar: AppBar(
 backgroundColor: widget.dataTableTheme?.headerDecoration?.color,
           automaticallyImplyLeading: false,
-          leading: widget.refreshButton??null,
+          leading: widget.refreshButton,
           title: Text(widget.title),
           actions: [widget.titleWidget ?? Container()],
         ),
         body: Container(
           padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: Card(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 60,
-                  child: TextFormField(
-                    controller: search,
-                    onChanged: handleOnChange,
-                    decoration: const InputDecoration(
-                        prefixIcon: Icon(Icons.search),
-                        border: OutlineInputBorder(),
-                        hintText: 'Search',
-                        // fillColor: Colors.white,
-                        // filled: true,
+          child: Column(
+            children: [
+              SizedBox(
+                height: 60,
+                child: TextFormField(
+                  controller: search,
+                  onChanged: handleOnChange,
+                  decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.search),
+                      border: OutlineInputBorder(),
+                      hintText: 'Search',
+                      // fillColor: Colors.white,
+                      // filled: true,
 
-                        hoverColor: Colors.transparent),
-                  ),
+                      hoverColor: Colors.transparent),
                 ),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: filteredItems.isEmpty
-                        ? widget.items.length
-                        : filteredItems.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      var item = filteredItems.isEmpty
-                          ? widget.items[index]
-                          : filteredItems[index];
-                      var heads = widget.heads
-                          .where((element) => element.isTitle)
-                          .toList();
-                      String title = heads.isEmpty
-                          ? item[widget.heads[0].id]
-                          : item[heads[0].id] ?? "";
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: filteredItems.isEmpty
+                      ? widget.items.length
+                      : filteredItems.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    var item = filteredItems.isEmpty
+                        ? widget.items[index]
+                        : filteredItems[index];
+                    var heads = widget.heads
+                        .where((element) => element.isTitle)
+                        .toList();
+                    String title = heads.isEmpty
+                        ? item[widget.heads[0].id]
+                        : item[heads[0].id] ?? "";
 
-                      var subtitlex = widget.heads
-                          .where((element) => element.isSubtitle)
-                          .toList();
-                      String subtitle = subtitlex.isEmpty
-                          ? item[widget.heads[1].id]
-                          : item[subtitlex[0].id] ?? "";
-                      return Card(
-                        child: ExpansionTile(
-                          //dense: true,
-                          shape: RoundedRectangleBorder(),
-                          /* leading: CircleAvatar(
-                            child: Text((index + 1).toString()),
-                          ),*/
-                          leading: widget.selecteditems!=null?Checkbox(
-                              value: selectedItems.contains(item),
-                              onChanged: (e) {
-                                if(widget.selecteditems==null) return;
-                                setState(() {
-                                  if (selectedItems.contains(item)) {
-                                    selectedItems.remove(item);
-                                  } else {
-                                    selectedItems.add(item);
-                                  }
-                                  widget.selecteditems!(selectedItems);
-                                });
-                              }):null,
-                          title: Text(title),
-                          subtitle: Text(subtitle),
-                          trailing: widget.heads.any((e) => e.isbutton)
-                              ? SizedBox(
-                            child: widget.heads
-                                .where((e) => e.isbutton)
-                                .toList()[0]
-                                .button!(item),
-                          )
-                              : null,
-                          children: widget.heads.map((element) {
-                            if (element.isbutton) {
-                              return SizedBox();
-                            }
-                            return ListTile(
-                              title: Text(item[element.id].toString() ),
-                              subtitle: Text(element.title),
-                            );
-                          }).toList(),
-                        ),
-                      );
-                    },
-                  ),
-                )
-              ],
-            ),
+                    var subtitlex = widget.heads
+                        .where((element) => element.isSubtitle)
+                        .toList();
+                    String subtitle = subtitlex.isEmpty
+                        ? item[widget.heads[1].id]
+                        : item[subtitlex[0].id] ?? "";
+                    return Card(
+                      child: ExpansionTile(
+                        //dense: true,
+                        shape: RoundedRectangleBorder(),
+                        /* leading: CircleAvatar(
+                          child: Text((index + 1).toString()),
+                        ),*/
+                        leading: widget.selecteditems!=null?Checkbox(
+                            value: selectedItems.contains(item),
+                            onChanged: (e) {
+                              if(widget.selecteditems==null) return;
+                              setState(() {
+                                if (selectedItems.contains(item)) {
+                                  selectedItems.remove(item);
+                                } else {
+                                  selectedItems.add(item);
+                                }
+                                widget.selecteditems!(selectedItems);
+                              });
+                            }):Container(
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: Colors.black12,
+                              borderRadius: BorderRadius.circular(6)
+                            ),
+                            child: Text((index + 1).toString())),
+                        title: Text(title),
+                        subtitle: Text(subtitle),
+                        trailing: widget.heads.any((e) => e.isbutton)
+                            ? SizedBox(
+                          child: widget.heads
+                              .where((e) => e.isbutton)
+                              .toList()[0]
+                              .button!(item),
+                        )
+                            : null,
+                        children: widget.heads.map((element) {
+                          if (element.isbutton) {
+                            return SizedBox();
+                          }
+                          return ListTile(
+                            title: Text(item[element.id].toString() ),
+                            subtitle: Text(element.title),
+                          );
+                        }).toList(),
+                      ),
+                    );
+                  },
+                ),
+              )
+            ],
           ),
         ),
       ),
