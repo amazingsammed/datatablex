@@ -1,3 +1,5 @@
-## 0.0.5
+## 0.0.9
 
-* TODO: Made minor Changes
+Made Changes to the theme in dark mode
+
+add margin to DatatableX

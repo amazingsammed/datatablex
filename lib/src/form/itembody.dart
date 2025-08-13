@@ -15,6 +15,7 @@ class ItemListBody extends StatefulWidget {
   final List items;
   final int maxRows;
   final Map<String, dynamic>? lastRow;
+  final bool showNumbering;
 
   const ItemListBody(
       {super.key,
@@ -24,7 +25,7 @@ class ItemListBody extends StatefulWidget {
       this.selecteditem,
       required this.selectedItems,
       this.dataTableTheme,
-      required this.maxRows, this.lastRow, });
+      required this.maxRows, this.lastRow, required this.showNumbering, });
 
   @override
   State<ItemListBody> createState() => _ItemListBodyState();
@@ -34,7 +35,9 @@ class _ItemListBodyState extends State<ItemListBody> {
   int itemsperPag = 50;
   int _currentPage = 0;
   final pageController = PageController(initialPage: 0);
-
+bool isLight(context){
+  return Theme.of(context).brightness == Brightness.light;
+}
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -81,10 +84,12 @@ class _ItemListBodyState extends State<ItemListBody> {
                                       bodyPadding,
                                   decoration: BoxDecoration(
                                     color: widget.selectedItems.contains(item)
-                                        ? Colors.blue[100]
-                                        : index % 2 != 0
+                                        ? isLight(context)?Colors.blue[100]:Colors.black12
+                                        : isLight(context)? index % 2 != 0
                                             ? Colors.grey.shade100
-                                            : null,
+                                            : null:index % 2 != 0
+                                        ? Colors.black12
+                                        : null,
                                     // color: controller.hoverColor.value,
                                     border: Border.all(color: Colors.black12),
                                   ),
@@ -118,7 +123,7 @@ class _ItemListBodyState extends State<ItemListBody> {
                                                   }),
                                             )
                                           : SizedBox(),
-                                      SizedBox(
+                                   if(widget.showNumbering)   SizedBox(
                                         width: 40,
                                         child: Text(
                                           '${index + 1 + (_currentPage * widget.maxRows)}',
@@ -131,7 +136,7 @@ class _ItemListBodyState extends State<ItemListBody> {
                                         String data = "";
                                         if (element.type ==
                                             TableHeadType.string) {
-                                          data = results ?? "";
+                                          data = results.toString() ?? "";
                                         } else if (element.type ==
                                             TableHeadType.int) {
                                           data = "$results";

@@ -24,6 +24,9 @@ class DataTableX extends StatefulWidget {
   final TableOptions? tableOptions;
   final DataTableThemeX? dataTableTheme;
   final int maxRows;
+  final EdgeInsets? margin;
+  final bool hasSearchBar;
+  final bool showNumbering;
 
   const DataTableX(
       {super.key,
@@ -32,8 +35,13 @@ class DataTableX extends StatefulWidget {
         required this.heads,
         required this.items,
         this.titleWidget,
+        this.margin,
+        this.hasSearchBar =true,
+        this.hastitleBar =true,
         this.selecteditems,
-        this.tableOptions, this.refreshButton, this.dataTableTheme, this.maxRows = 50,  this.lastRow});
+        this.tableOptions, this.refreshButton, this.dataTableTheme, this.maxRows = 50,  this.lastRow, this.showNumbering =true});
+
+  final bool hastitleBar ;
 
   @override
   State<DataTableX> createState() => _DataTableXState();
@@ -62,6 +70,7 @@ class _DataTableXState extends State<DataTableX> {
   Widget build(BuildContext context) {
    return ResponsiveLayout(
       mobileWidget: Scaffold(
+
         appBar: AppBar(
 backgroundColor: widget.dataTableTheme?.headerDecoration?.color,
           automaticallyImplyLeading: false,
@@ -73,7 +82,7 @@ backgroundColor: widget.dataTableTheme?.headerDecoration?.color,
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
             children: [
-              SizedBox(
+              if(widget.hasSearchBar)SizedBox(
                 height: 60,
                 child: TextFormField(
                   controller: search,
@@ -101,15 +110,15 @@ backgroundColor: widget.dataTableTheme?.headerDecoration?.color,
                         .where((element) => element.isTitle)
                         .toList();
                     String title = heads.isEmpty
-                        ? item[widget.heads[0].id]
-                        : item[heads[0].id] ?? "";
+                        ? item[widget.heads[0].id].toString()
+                        : item[heads[0].id].toString() ?? "";
 
                     var subtitlex = widget.heads
                         .where((element) => element.isSubtitle)
                         .toList();
                     String subtitle = subtitlex.isEmpty
-                        ? item[widget.heads[1].id]
-                        : item[subtitlex[0].id] ?? "";
+                        ? item[widget.heads[1].id].toString()
+                        : item[subtitlex[0].id].toString() ?? "";
                     return Card(
                       child: ExpansionTile(
                         //dense: true,
@@ -167,16 +176,16 @@ backgroundColor: widget.dataTableTheme?.headerDecoration?.color,
       desktopWidget: Scaffold(
         body: ConstrainedBox(
           constraints: const BoxConstraints(
-            maxWidth: 1377,
+            maxWidth: 1400,
           ),
           child: Card(
-            margin: EdgeInsets.all(40).copyWith(top: 10),
+            margin:widget.margin?? EdgeInsets.all(40).copyWith(top: 10),
             child: Container(
               padding: EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
+                  if(widget.hastitleBar)    SizedBox(
                     height: 45,
                     child: Row(
                       children: [
@@ -191,7 +200,7 @@ backgroundColor: widget.dataTableTheme?.headerDecoration?.color,
                       ],
                     ),
                   ),
-                  SizedBox(
+                  if(widget.hasSearchBar)SizedBox(
                     height: 40,
                     child: Row(
                       children: [
@@ -229,6 +238,7 @@ backgroundColor: widget.dataTableTheme?.headerDecoration?.color,
                           child: Column(
                             children: [
                               ItemListHeader(
+                                showNumbering: widget.showNumbering,
                                 selecteditem: widget.selecteditems,
                                 elements: widget.heads,
                                 selectedItems: selectedItems,
@@ -244,6 +254,7 @@ backgroundColor: widget.dataTableTheme?.headerDecoration?.color,
                                 }, dataTableTheme: widget.dataTableTheme,
                               ),
                               ItemListBody(
+                                showNumbering: widget.showNumbering,
                                 lastRow: widget.lastRow,
                                 maxRows: widget.maxRows,
                                 dataTableTheme: widget.dataTableTheme,

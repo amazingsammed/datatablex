@@ -8,13 +8,14 @@ class ItemListHeader extends StatelessWidget {
   final Function(String) onAccept;
   final Function(List<Map> p1)? selecteditem;
   final DataTableThemeX? dataTableTheme;
+  final bool showNumbering;
 
 
   const ItemListHeader(
       {super.key,
         required this.elements,
         required this.selectedItems,
-        required this.onAccept,  this.selecteditem,  this.dataTableTheme});
+        required this.onAccept,  this.selecteditem,  this.dataTableTheme, required this.showNumbering});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +53,7 @@ class ItemListHeader extends StatelessWidget {
                 },
                 icon: Icon(Icons.menu_open),
               )),
-          SizedBox(width: 40,child: Text('No',style: dataTableTheme?.headerTextStyle??headerTextStyle,),),SizedBox(),
+          if(showNumbering)   SizedBox(width: 40,child: Text('No',style: dataTableTheme?.headerTextStyle??headerTextStyle,),),SizedBox(),
           ...elements.map((item) {
             return Expanded(
               flex: item.size * item.width.toInt(),

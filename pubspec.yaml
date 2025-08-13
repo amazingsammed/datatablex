@@ -1,7 +1,8 @@
 name: datatablex
 description: "An easy to use DataTable for Flutter"
-version: 0.0.7
-homepage:
+version: 0.0.9
+homepage: https://github.com/amazingsammed/datatablex
+repository:  https://github.com/amazingsammed/datatablex
 
 environment:
   sdk: ^3.6.1
