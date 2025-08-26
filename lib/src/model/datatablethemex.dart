@@ -20,6 +20,32 @@ class DataTableThemeX {
     this.headerPadding =  const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
     this.bodyPadding = const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
   });
+
+  DataTableThemeX merge (DataTableThemeX? others){
+    if(others==null)return this;
+    return copyWith(
+      headerDecoration: headerDecoration?.copyWith(color: others.headerDecoration?.color)
+
+    );
+  }
+
+  DataTableThemeX copyWith({
+    TextStyle? headerTextStyle,
+    TextStyle? bodyTextStyle,
+    BoxDecoration? headerDecoration,
+    Decoration? bodyDecoration,
+    EdgeInsetsGeometry? headerPadding,
+    EdgeInsetsGeometry? bodyPadding,
+  }) {
+    return DataTableThemeX(
+      headerTextStyle: headerTextStyle ?? this.headerTextStyle,
+      bodyTextStyle: bodyTextStyle ?? this.bodyTextStyle,
+      headerDecoration: headerDecoration ?? this.headerDecoration,
+      bodyDecoration: bodyDecoration ?? this.bodyDecoration,
+      headerPadding: headerPadding ?? this.headerPadding,
+      bodyPadding: bodyPadding ?? this.bodyPadding,
+    );
+  }
 }
 
   final headerTextStyle =

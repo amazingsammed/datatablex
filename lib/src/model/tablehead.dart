@@ -33,6 +33,9 @@ class TableHead {
     this.isbutton = false,
     this.isTitle = false,
     this.isSubtitle = false,
+    @Deprecated(
+    'This is not required anymore',
+    )
     this.type = TableHeadType.string,
     @Deprecated(
       'Use widget instead. '

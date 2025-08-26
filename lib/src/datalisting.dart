@@ -22,13 +22,13 @@ class DataTableX extends StatefulWidget {
   final Widget? titleWidget;
   final Widget? refreshButton;
   final TableOptions? tableOptions;
-  final DataTableThemeX? dataTableTheme;
+  final DataTableThemeX? dataTableThemex;
   final int maxRows;
   final EdgeInsets? margin;
   final bool hasSearchBar;
   final bool showNumbering;
 
-  const DataTableX(
+   DataTableX(
       {super.key,
         this.onTap,
         required this.title,
@@ -39,7 +39,7 @@ class DataTableX extends StatefulWidget {
         this.hasSearchBar =true,
         this.hastitleBar =true,
         this.selecteditems,
-        this.tableOptions, this.refreshButton, this.dataTableTheme, this.maxRows = 50,  this.lastRow, this.showNumbering =true});
+        this.tableOptions, this.refreshButton, DataTableThemeX? dataTableTheme, this.maxRows = 50,  this.lastRow, this.showNumbering =true}): dataTableThemex =  DataTableThemeX().merge(dataTableTheme);
 
   final bool hastitleBar ;
 
@@ -72,7 +72,7 @@ class _DataTableXState extends State<DataTableX> {
       mobileWidget: Scaffold(
 
         appBar: AppBar(
-backgroundColor: widget.dataTableTheme?.headerDecoration?.color,
+//backgroundColor: widget.dataTableThemex?.headerDecoration?.color,
           automaticallyImplyLeading: false,
           leading: widget.refreshButton,
           title: Text(widget.title),
@@ -251,13 +251,13 @@ backgroundColor: widget.dataTableTheme?.headerDecoration?.color,
                                       selectedItems.add(widget.items[i - 1]);
                                     });
                                   }
-                                }, dataTableTheme: widget.dataTableTheme,
+                                }, dataTableTheme: widget.dataTableThemex,
                               ),
                               ItemListBody(
                                 showNumbering: widget.showNumbering,
                                 lastRow: widget.lastRow,
                                 maxRows: widget.maxRows,
-                                dataTableTheme: widget.dataTableTheme,
+                                dataTableTheme: widget.dataTableThemex,
                                 selecteditem: widget.selecteditems,
                                 head: widget.heads,
                                 selectedItems: selectedItems,
